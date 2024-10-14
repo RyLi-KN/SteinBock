@@ -37,9 +37,9 @@ def update_counts(answer):
 # Function to start the animation of the Steinbock
 def start_animation():
     # Hide the question and buttons
-    question_label.pack_forget()
-    yes_button.pack_forget()
-    no_button.pack_forget()
+    question_label.place_forget()
+    yes_button.place_forget()
+    no_button.place_forget()
 
     # Show the Steinbock
     steinbock_label.pack()
@@ -54,7 +54,7 @@ def move_steinbock():
         nonlocal x
         if x > -fi_width:
             x -= 4  # Move right
-            steinbock_label.place(x=x, y=window.winfo_height()/2-fi_height)
+            steinbock_label.place(x=x, y=window.winfo_height()//2-fi_height)
             window.after(8, animate)
         else:
         #     # After animation, show thanks message
@@ -66,13 +66,16 @@ def move_steinbock():
 
 # Function to show the question and buttons again
 def show_question():
-    question_label.pack()
-    yes_button.pack(side=tk.LEFT, padx=20)
-    no_button.pack(side=tk.RIGHT, padx=20)
+    # Calculate the position for the question label
+    width = window.winfo_screenwidth()
+    height = window.winfo_screenheight()
+    question_label.place(x=width/2, y=height/2-200, anchor='center')  # Centered and a bit up
+    yes_button.place(x=width/2-100, y=height/2+50, anchor='center')
+    no_button.place(x=width/2+100, y=height/2+50, anchor='center')
 
 # Create the main window
 window = tk.Tk()
-window.title("Question Game")
+window.title("Question")
 window.attributes("-fullscreen", True)
 window.configure(bg='yellow')
 
